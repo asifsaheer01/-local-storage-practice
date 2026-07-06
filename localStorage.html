@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <h1>register form</h1>
+<form action="">
+     <input type="text" id="name" placeholder="enter your name">
+     <input type="email" id="email" placeholder="enter your email">
+     <input type="password" id="pass" placeholder="enter">
+
+     <button id="savebtn">register</button>
+     <button id="clear-btn">clear</button>
+</form>
+<h2>register user</h2>
+<div id="user"></div>
+
+<script>
+  let name=document.querySelector("#name")
+  let email=document.querySelector("#email")
+  let password=document.querySelector("#pass")
+  let savebtn=document.querySelector("#savebtn")
+  let clearbtn=document.querySelector("#clear-btn")
+  let usearr=[];
+
+savebtn.addEventListener("click",(e)=>{
+    e.preventDefault();
+    console.log("clicked");
+    
+    let userobj={name:name.value,email:email.value,password:password.value}
+    console.log(userobj);
+    usearr.push(userobj);
+    localStorage.setItem("str",JSON.stringify(usearr))
+    name.value=""
+    email.value=""
+    password.value=""
+})
+
+
+</script>     
+
+</body>
+</html>
