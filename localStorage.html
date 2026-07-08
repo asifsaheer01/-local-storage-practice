@@ -18,17 +18,40 @@
 <h2>register user</h2>
 <div id="user"></div>
 
+
+
+
 <script>
   let name=document.querySelector("#name")
   let email=document.querySelector("#email")
   let password=document.querySelector("#pass")
   let savebtn=document.querySelector("#savebtn")
   let clearbtn=document.querySelector("#clear-btn")
-  let usearr=[];
+  let userdiv=document.querySelector("#user")
+  
+
+
+
+  function displays(){
+    userdiv.innerHTML="";
+    let userList=localStorage.getItem("str")
+    let userobj= JSON.parse(userList)||[]
+    userobj.forEach((item,index)=>{
+        userdiv.innerHTML +=`
+        <div>
+    <h3>${item.name}</h3>
+    <p>email:${item.email}</p>
+    <p>password:${item.password}</p>
+</div>`;
+    })
+  }
+
+
+let usearr=[];
+
 
 savebtn.addEventListener("click",(e)=>{
     e.preventDefault();
-    console.log("clicked");
     
     let userobj={name:name.value,email:email.value,password:password.value}
     console.log(userobj);
@@ -37,7 +60,11 @@ savebtn.addEventListener("click",(e)=>{
     name.value=""
     email.value=""
     password.value=""
+
+    
+displays()
 })
+
 
 
 </script>     
