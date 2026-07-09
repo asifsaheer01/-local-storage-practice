@@ -10,7 +10,7 @@
 <form action="">
      <input type="text" id="name" placeholder="enter your name">
      <input type="email" id="email" placeholder="enter your email">
-     <input type="password" id="pass" placeholder="enter">
+     <input type="password" id="pass" placeholder="enter your password">
 
      <button id="savebtn">register</button>
      <button id="clear-btn">clear</button>
@@ -38,20 +38,31 @@
     let userobj= JSON.parse(userList)||[]
     userobj.forEach((item,index)=>{
         userdiv.innerHTML +=`
-        <div>
+        <div style="border:1px solid black;width:450px; color:blue;font-size:30px; margin:50px; padding:50px; border-radius:30px; background-color:yellow;" >
     <h3>${item.name}</h3>
     <p>email:${item.email}</p>
     <p>password:${item.password}</p>
+    <button style="color:white; background-color:green;"  onclick="deleteusers(${index})">delete</button>
 </div>`;
     })
   }
 
 
-let usearr=[];
+  function deleteusers(index){
+    let users=localStorage.getItem("str");
+    users=JSON.parse(users)||[];
+    users.splice(index,1);
+    localStorage.setItem("str",JSON.stringify(users));
+    displays()
+  }
+
+
+// let usearr=[];
 
 
 savebtn.addEventListener("click",(e)=>{
     e.preventDefault();
+    let usearr= JSON.parse(localStorage.getItem("str"))||[];
     
     let userobj={name:name.value,email:email.value,password:password.value}
     console.log(userobj);
